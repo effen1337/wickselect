@@ -1,4 +1,4 @@
-import Svelecte, { addFormatter, config } from './src/Svelecte.svelte';
+import Svelecte, { addFormatter, config } from './src/WickSelect.svelte';
 
 export default Svelecte;
 
