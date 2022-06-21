@@ -72,6 +72,7 @@
   color: inherit;
   margin: -2px 0 0;
   height: 20px;
+  @apply text-base-content bg-base-100/5 ;
 }
 .inputBox::placeholder {
   color: var(--sv-placeholder-color, #ccccd6);

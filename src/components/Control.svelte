@@ -94,20 +94,17 @@
     ></Input>
   </div>
   <!-- buttons, indicators -->
-  <div class="indicator" class:is-loading={isFetchingData} >
+  <div class="indicator " class:is-loading={isFetchingData} >
     {#if clearable && selectedOptions.length && !disabled}
-    <div aria-hidden="true" class="indicator-container close-icon"
+    <div aria-hidden="true" class="indicator-container close-icon hover:animate-pulse"
       on:mousedown|preventDefault
       on:click={() => dispatch('deselect')}
     >
-      <svg class="indicator-icon" height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"></path></svg>
+      <svg class="indicator-icon transition-colors duration-500 hover:text-red-500 bg-base-300 hover:bg-base-100 rounded-sm p-1 w-6 h-6" height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"></path></svg>
     </div>
     {/if}
-    {#if clearable}
-    <span class="indicator-separator"></span>
-    {/if}
-    <div aria-hidden="true" class="indicator-container" on:mousedown|preventDefault>
-      <svg width="20" height="20" class="indicator-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+    <div aria-hidden="true" class="indicator-container hover:text-primary" on:mousedown|preventDefault>
+      <svg width="20" height="20" class="indicator-icon transition-colors duration-500 bg-base-300 hover:bg-base-100 rounded-sm p-1 w-6 h-6" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
         <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
       </svg>
     </div>
@@ -116,59 +113,36 @@
 
 <style>
 .sv-control { 
-  background-color: var(--sv-bg);
-  border: var(--sv-border);
-  border-radius: 4px;
-  min-height: var(--sv-min-height);
+  @apply flex items-center justify-start box-border cursor-pointer bg-base-200 text-base-content rounded-md w-full transition-colors duration-1000 min-h-12 shadow-md border-2 border-neutral-content/5;
 }
+
+.sv-control:hover { 
+  @apply bg-base-300;
+}
+.sv-control:focus { 
+  @apply bg-base-300;
+}
+
 .sv-control.is-active {
-  border: var(--sv-active-border);
-  outline: var(--sv-active-outline);
+  @apply ring-2 ring-primary;
 }
 .sv-control.is-disabled {
-  background-color: var(--sv-disabled-bg);
-  border-color: var(--sv-disabled-border-color);
-  cursor: default;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  outline: currentcolor none 0px !important;
-  position: relative;
-  transition: all 100ms ease 0s;
+  @apply bg-neutral text-neutral-content cursor-not-allowed border-2 border-error ring-0;
 }
-.sv-control {
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-}
+
 .sv-content {
-  align-items: center;
-  display: flex;
-  flex: 1 1 0%;
-  flex-wrap: nowrap;
-  padding: 0 0 0 6px;
-  position: relative;
-  overflow: hidden;
-  box-sizing: border-box;
+  @apply flex items-center flex-1 flex-nowrap pl-2 box-border;
 }
 .sv-content.sv-input-row.has-multiSelection {
   flex-flow: wrap;
 }
 .indicator {
-  position: relative;
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  flex-shrink: 0;
-  box-sizing: border-box;
+  @apply relative items-center self-stretch flex gap-1 shrink-0 box-border px-1;
 }
 .indicator-container {
-  color: var(--sv-icon-color);
-  display: flex;
-  padding: 8px;
-  transition: color 150ms ease 0s;
-  box-sizing: border-box;
+  @apply h-full flex justify-center items-center transition-colors duration-150 box-border;
 }
-.indicator-container:hover { color: var(--sv-icon-hover) }
+
 .indicator-separator {
   align-self: stretch;
   background-color: var(--sv-border-color);

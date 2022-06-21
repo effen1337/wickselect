@@ -4,22 +4,12 @@
 
 <style>
   .sv-item-btn {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    align-self: stretch;
-    padding: 0 4px;
-    box-sizing: border-box;
-    border-radius: 2px;
-    border-width: 0;
-    margin: 0;
-    cursor: pointer;
-    background-color: var(--sv-item-btn-bg, var(--sv-item-selected-bg));
+    @apply relative inline-flex items-center self-stretch box-border px-1 border-0 m-0 cursor-pointer bg-error/50 text-error-content;
   }
   .sv-item-btn:hover {
-    background-color: var(--sv-item-btn-bg-hover);
+    @apply bg-error/100;
   }
   .sv-item-btn > svg {
-    fill: var(--sv-item-btn-icon, var(--sv-icon-color));
+    @apply fill-current;
   }
 </style>
